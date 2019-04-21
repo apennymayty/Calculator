@@ -1,0 +1,56 @@
+.Cal {
+    background-color: black;
+    height: 320px;
+    width: 250px;
+    border-radius: 5px;
+    margin-left: 10px;
+    margin-top: 30px;
+    max-width: 250px;
+}
+
+.Cal__textbox {
+    padding: 10px;
+    margin-left: 5px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-size: 12px;
+    height: 20px;
+}
+#Cal__ans{
+    line-height: 63px;
+    width: 210px;
+    border-radius: 5px;
+    text-align: right;
+    font-size: 40px;
+}
+.Cal__numbers{
+   margin-top:45px;
+}
+.Cal__btn {
+    padding: 5px;
+
+    margin-left: 10px;
+    margin-top: 5px;
+    display: inline-flex;
+    height: 30px;
+    width: 30px;
+    background-color:orange;
+    justify-content:center;  
+    align-items:center;
+    border-radius: 10px;
+}
+.Cal__btn:nth-child(1n)
+{
+    margin-left: 15px;
+}
+.Cal__btn::before {
+    content: attr(data-index);
+}
+.Cal__btn:hover {
+    background-color: white;
+    color: black;
+}
+.Cal__btn:nth-last-child(3)
+{
+    width: 90px;
+}
