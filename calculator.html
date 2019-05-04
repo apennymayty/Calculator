@@ -6,8 +6,85 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Page Title</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum0scale-1.0, user-scalable=0">
-    <link rel="stylesheet" type="text/css" href="calulator.css">
+    <link rel="stylesheet" type="text/css" href="calculator.css">
     <link rel="stylesheet" type="text/css" href="navigation.css">
+    <script src="https://code.jquery.com/jquery-3.4.0.min.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            var number = document.querySelector("#Cal__ans").value
+            var op = ""
+
+
+            //按數字
+            document.querySelector(".Cal__numbers").addEventListener("click", function (e) {
+                //data-index //用console.log(e)去try
+                number += e.target.dataset.index
+                document.querySelector("#Cal__ans").value = parseInt(number, 10)
+                number = document.querySelector("#Cal__ans").value
+                //按到非數字按鍵
+                if (e.target.dataset.index === "C") {
+                    number = "0"
+                    firstCount = "0"
+                    document.querySelector("#Cal__ans").value = 0
+                }
+                else if (e.target.dataset.index === "CE") {
+                    number = "0"
+                }else if (e.target.dataset.index === "%"){
+                    number=parseInt(number,10)/100
+                    document.querySelector("#Cal__ans").value = number
+                }else if (e.target.dataset.index === "="){
+                    secondCount = number
+                    console.log("第二個數字=",secondCount)
+                    Op(compute)
+                    number="0"
+                } 
+                else if (e.target.className === "Cal__btn op") {
+                    console.log("我是運算符號:",e.target.dataset.index)
+                    firstCount = number
+                    console.log("第一個數字", firstCount)
+                    number = "0"
+                    compute=e.target.dataset.index
+                }
+            })
+
+            // <!-- 
+            //             
+            //             document.querySelector(".operator").addEventListener("click", function (e) {
+
+            //                 firstCount = number
+            //                 //console.log(e.target.id) //id 
+            //                 //console.log("id的值＝",document.getElementById(e.target.id).value) //id的value
+            //                 compute = document.getElementById(e.target).attr(data-index) //var count1 = document.getElementById(e.target.id).value
+            //                 //console.log(op)
+            //                 number = "0"
+            //             })
+            //             //按等於
+            //             document.querySelector("#total").addEventListener("click", function (e) {
+            //                 secondCount = number
+            //                 Op("=")
+
+            //             }) -->
+
+            function Op(op) {
+
+                if (compute === "+") {
+                    number = parseInt(firstCount, 10) + parseInt(secondCount, 10)
+                    document.querySelector("#Cal__ans").value = number
+                } else if (compute === "-") {
+                    number = parseInt(firstCount, 10) - parseInt(secondCount, 10)
+                    document.querySelector("#Cal__ans").value = number
+                } else if (compute === "*") {
+                    number = parseInt(firstCount, 10) * parseInt(secondCount, 10)
+                    document.querySelector("#Cal__ans").value = number
+                } else if (compute === "/") {
+                    number = parseInt(firstCount, 10) / parseInt(secondCount, 10)
+                    document.querySelector("#Cal__ans").value = number
+                }
+
+
+            }
+        })
+    </script>
 </head>
 
 <body>
@@ -16,35 +93,35 @@
             <li><a href="#">Home</a></li>
             <li><a href="#">Calulator</a></li>
         </ul>
-        <input type="text" id="searchText"/>
-        <input type="submit" id="searchBtn"/>
-    <div class="Cal">
-        <div class="Cal__textbox">
-            <input type="text" id="Cal__ans" value="0"/>
-        </div>
-        <div class="Cal__numbers">
-            <div class="Cal__btn" data-index="CE"></div>
-            <div class="Cal__btn" data-index="C"></div>
-            <div class="Cal__btn" data-index="%"></div>
-            <div class="Cal__btn" data-index="/"></div>
-            <div class="Cal__btn" data-index="7"></div>
-            <div class="Cal__btn" data-index="8"></div>
-            <div class="Cal__btn" data-index="9"></div>
-            <div class="Cal__btn" data-index="*"></div>
-            <div class="Cal__btn" data-index="4"></div>
-            <div class="Cal__btn" data-index="5"></div>
-            <div class="Cal__btn" data-index="6"></div>
-            <div class="Cal__btn" data-index="-"></div>
-            <div class="Cal__btn" data-index="1"></div>
-            <div class="Cal__btn" data-index="2"></div>
-            <div class="Cal__btn" data-index="3"></div>
-            <div class="Cal__btn" data-index="+"></div>
-            <div class="Cal__btn" data-index="0"></div>
-            <div class="Cal__btn" data-index="."></div>
-            <div class="Cal__btn" data-index="="></div>
+        <input type="text" id="searchText" />
+        <input type="submit" id="searchBtn" />
+        <div class="Cal">
+            <div class="Cal__textbox">
+                <input type="text" id="Cal__ans" value="0" />
+            </div>
+            <div class="Cal__numbers">
+                <div class="Cal__btn op" data-index="CE"></div>
+                <div class="Cal__btn op" data-index="C"></div>
+                <div class="Cal__btn op" data-index="%"></div>
+                <div class="Cal__btn op" data-index="/"></div>
+                <div class="Cal__btn" data-index="7"></div>
+                <div class="Cal__btn" data-index="8"></div>
+                <div class="Cal__btn" data-index="9"></div>
+                <div class="Cal__btn op" data-index="*"></div>
+                <div class="Cal__btn" data-index="4"></div>
+                <div class="Cal__btn" data-index="5"></div>
+                <div class="Cal__btn" data-index="6"></div>
+                <div class="Cal__btn op" data-index="-"></div>
+                <div class="Cal__btn" data-index="1"></div>
+                <div class="Cal__btn" data-index="2"></div>
+                <div class="Cal__btn" data-index="3"></div>
+                <div class="Cal__btn op" data-index="+"></div>
+                <div class="Cal__btn" data-index="0"></div>
+                <div class="Cal__btn op" data-index="."></div>
+                <div class="Cal__btn op" data-index="="></div>
+            </div>
         </div>
     </div>
-</div>
 
 
 </body>
